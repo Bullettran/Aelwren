@@ -1,0 +1,16 @@
+.link--white {
+    color: var(--white);
+}
+
+.link--white:hover {
+    color: var(--white);
+    border-bottom: 1px solid var(--red2);
+}
+
+.link--white:active {
+    color: var(--white);
+}
+
+.link--white:visited {
+    color: var(--white);
+}

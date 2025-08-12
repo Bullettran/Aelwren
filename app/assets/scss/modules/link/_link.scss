@@ -1,0 +1,9 @@
+@use "sass:meta";
+.link {
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    touch-action: manipulation;
+}
+
+@include meta.load-css("link--white");

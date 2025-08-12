@@ -1,0 +1,49 @@
+.battle-grid {
+    display: grid;
+    grid-gap: 2px;
+    background: #2c3e50;
+    padding: 90px 80px 48px 110px;
+    border-radius: 8px;
+    max-width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    grid-template-columns: repeat(8, 70px);
+    grid-template-rows: repeat(6, 70px);
+    background: url("/images/battles/battle-1.png") no-repeat;
+    background-size: 800px 600px;
+}
+
+.battle-grid__item {
+    width: 70px;
+    height: 70px;
+    background: rgba(0, 0, 0, 0.3);
+    position: relative;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.battle-grid__player-side {
+    border: 3px solid #3498db;
+}
+
+.battle-grid__enemy-side {
+    border: 3px solid #e74c3c;
+}
+
+.test {
+    display: block;
+    background-image: url("/images/allies/test-war.png");
+    width: 64px;
+    height: 64px;
+    animation: idle;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    background-repeat: no-repeat;
+    animation-timing-function: steps(1, end);
+}
+
+@keyframes idle {
+    0% {background-position: 0px -448px;}
+    50% {background-position: -448px -448px;}
+    100% {background-position: 0px -448px;}
+}

@@ -1,0 +1,10 @@
+@use "../../helpers/_helpers.scss" as *;
+
+.container {
+    @include make-container();
+    @include make-container-max-widths();
+    @include media-breakpoint-down(xs) {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}

@@ -1,0 +1,14 @@
+@use "sass:meta";
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+@include meta.load-css("h1");
+@include meta.load-css("h1a");
+@include meta.load-css("h2");
+@include meta.load-css("h2a");
+@include meta.load-css("h3");
+@include meta.load-css("h3a");
+@include meta.load-css("h4");
+@include meta.load-css("h4a");

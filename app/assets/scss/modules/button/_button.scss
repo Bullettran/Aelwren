@@ -1,0 +1,23 @@
+@use "sass:meta";
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 1px solid transparent;
+    transition: background-color .15s ease, border-color .15s ease;
+    background-color: transparent;
+    text-decoration: none;
+    user-select: none;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+
+    &:focus, &:active {
+        outline: none;
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+    }
+}

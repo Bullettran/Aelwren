@@ -17,6 +17,14 @@ export default defineNuxtConfig({
         "pinia-plugin-persistedstate/nuxt",
         //https://primevue.org/nuxt
         "@primevue/nuxt-module",
+        //https://nuxt.com/modules/icons
+        "nuxt-icons",
+    ],
+    css: [
+        "./app/assets/scss/base/colors.css",
+        "./app/assets/scss/base/_general.scss",
+        "./app/assets/scss/modules/_modules.scss",
+        "./public/fonts/fonts.css",
     ],
     runtimeConfig: {
         public: {
