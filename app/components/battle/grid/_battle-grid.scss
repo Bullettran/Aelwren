@@ -2,13 +2,13 @@
     display: grid;
     grid-gap: 2px;
     background: #2c3e50;
-    padding: 90px 80px 48px 110px;
+    padding: 52px 80px 48px 80px;
     border-radius: 8px;
     max-width: 800px;
     height: 600px;
     margin: 0 auto;
-    grid-template-columns: repeat(8, 70px);
-    grid-template-rows: repeat(6, 70px);
+    grid-template-columns: repeat(9, 70px);
+    grid-template-rows: repeat(8, 70px);
     background: url("/images/battles/battle-1.png") no-repeat;
     background-size: 800px 600px;
 }
@@ -28,6 +28,16 @@
 
 .battle-grid__enemy-side {
     border: 3px solid #e74c3c;
+}
+
+.battle-grid__selected {
+    box-shadow: 0 0 10px 5px rgba(255, 255, 0, 0.5);
+    z-index: 3;
+}
+
+.battle-grid__movable {
+    background-color: rgba(0, 255, 0, 0.2);
+    cursor: move;
 }
 
 .test {
