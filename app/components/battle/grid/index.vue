@@ -138,7 +138,11 @@ export default defineComponent({
             }
             // Если юнит уже выбран, пытаемся переместить
             if (this.selectedUnit) {
-                this.moveUnit(tile);
+                if (tile.unit && !this.isPlayerUnit(tile.unit)) {
+                    this.attackUnit(tile);
+                } else {
+                    this.moveUnit(tile);
+                }
             }
             // Если на клетке есть юнит игрока, выбираем его
 
@@ -174,6 +178,82 @@ export default defineComponent({
                 this.selectedUnit = null;
             }
         },
+
+        attackUnit(targetTile: GridItem): void {
+            if (!this.selectedUnit || !targetTile.unit) return;
+
+            const attacker = this.selectedUnit.unit;
+            const defender = targetTile.unit;
+
+            if (!attacker || !defender) return;
+
+            // Проверяем дистанцию для атаки
+            const rowDiff = Math.abs(this.selectedUnit.row - targetTile.row);
+            const colDiff = Math.abs(this.selectedUnit.col - targetTile.col);
+            const distance = rowDiff + colDiff;
+
+            // Определяем дальность атаки для разных типов юнитов
+            let attackRange = 1; // По умолчанию ближний бой
+            if (attacker.type === "mage" || attacker.type === "archer") {
+                attackRange = 3; // Дальний бой для магов и лучников
+            }
+
+            if (distance <= attackRange) {
+                // Наносим урон
+                defender.hp -= attacker.attack;
+
+                // Проверяем смерть защитника
+                if (defender.hp <= 0) {
+                    targetTile.unit = null;
+                    // Удаляем из соответствующего массива
+                    const unitArray = this.isPlayerUnit(defender)
+                        ? this.playersUnits
+                        : this.enemyUnits;
+                    const index = unitArray.findIndex(u => u.id === defender.id);
+                    if (index !== -1) {
+                        unitArray.splice(index, 1);
+                    }
+                }
+
+                // Помечаем, что юнит сходил
+                if (this.selectedUnit.unit) {
+                    this.selectedUnit.unit.hasMoved = true;
+                    // Обновляем в массиве
+                    const unitArray = this.isPlayerUnit(attacker)
+                        ? this.playersUnits
+                        : this.enemyUnits;
+                    const index = unitArray.findIndex(u => u.id === attacker.id);
+                    if (index !== -1) {
+                        unitArray[index].hasMoved = true;
+                    }
+                }
+
+                this.selectedUnit = null;
+            }
+        },
+
+        getAttackableTiles(unit: Unit): GridItem[] {
+            const attackableTiles: GridItem[] = [];
+            const unitTile = this.gridItems.find(t => t.unit?.id === unit.id);
+            if (!unitTile) return attackableTiles;
+
+            const attackRange = unit.type === "mage" || unit.type === "archer" ? 3 : 1;
+
+            for (let row = 1; row <= this.rows; row++) {
+                for (let col = 1; col <= this.cols; col++) {
+                    const distance = Math.abs(unitTile.row - row) + Math.abs(unitTile.col - col);
+                    if (distance <= attackRange) {
+                        const tile = this.gridItems.find(t => t.row === row && t.col === col);
+                        if (tile && tile.unit && !this.isPlayerUnit(tile.unit)) {
+                            attackableTiles.push(tile);
+                        }
+                    }
+                }
+            }
+
+            return attackableTiles;
+        },
+
         endTurn(): void {
             this.currentPlayer = "enemy";
             this.selectedUnit = null;
@@ -298,13 +378,14 @@ export default defineComponent({
           'battle-grid__enemy-side': item.col >= 7,
           'battle-grid__occupied': item.unit,
           'battle-grid__selected': item.id === selectedUnit?.id,
-          'battle-grid__movable': selectedUnit && Math.abs(item.row - selectedUnit.row) <= (selectedUnit.unit?.speed || 1) && Math.abs(item.col - selectedUnit.col) <= (selectedUnit.unit?.speed || 1) && !item.unit
+          'battle-grid__movable': selectedUnit && Math.abs(item.row - selectedUnit.row) <= (selectedUnit.unit?.speed || 1) && Math.abs(item.col - selectedUnit.col) <= (selectedUnit.unit?.speed || 1) && !item.unit,
+          'battle-grid__attackable': selectedUnit && getAttackableTiles(selectedUnit.unit!).includes(item)
         }
       ]"
                  @click="selectTile(item)">
                 <div v-if="item.unit" class="test">
                     {{ item.unit.type === "warrior" ? "⚔️" : "?" }}
-                    <span class="battle-grid__hp">{{ item.unit.hp }}❤️</span>
+                    <span class="battle-grid__hp" style="color: #fff;">{{ item.unit.hp }}❤️</span>
                 </div>
             </div>
         </div>

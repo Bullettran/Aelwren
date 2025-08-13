@@ -35,6 +35,11 @@
     z-index: 3;
 }
 
+.battle-grid__attackable {
+    box-shadow: 0 0 10px 3px rgba(255, 0, 0, 0.7);
+    z-index: 1;
+}
+
 .battle-grid__movable {
     background-color: rgba(0, 255, 0, 0.2);
     cursor: move;
