@@ -8,7 +8,20 @@ export default defineComponent({
 
 <template>
     <div class="build">
-        <div class="game-container"></div>
+        <div class="build__grid">
+            <div class="build__item build__item--empty"></div>
+            <div class="build__item build__item--empty"></div>
+            <div class="build__item build__item--empty"></div>
+            <div class="build__item build__item--empty"></div>
+            <div class="build__item build__item--empty"></div>
+            <div class="build__item build__item--empty"></div>
+            <div class="build__item build__item--empty"></div>
+            <div class="build__item build__item--empty"></div>
+            <div class="build__item build__item--empty"></div>
+            <div class="build__item build__item--empty"></div>
+            <div class="build__item build__item--empty"></div>
+            <div class="build__item build__item--empty"></div>
+        </div>
     </div>
 </template>
 

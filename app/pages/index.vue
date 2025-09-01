@@ -9,10 +9,16 @@ export default defineComponent({
 <template>
     <div class="start">
         <div class="start__container container">
-            <GameBuild/>
-            <client-only>
-                <div class="game-container"></div>
-            </client-only>
+            <GameBattle/>
+            <GameCastle/>
+            <div class="start__down">
+                <div class="start__wrap">
+                    <GameBuild class="start__build"/>
+                    <GameMagic class="start__magic"/>
+                    <GameStats class="start__stats"/>
+                </div>
+                <GameResources/>
+            </div>
         </div>
     </div>
 </template>

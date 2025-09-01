@@ -1,0 +1,17 @@
+.battle {
+    padding: 32px;
+}
+
+.battle__grid {
+    display: grid;
+    grid-template-columns: repeat(6, 48px);
+    justify-content: center;
+    grid-gap: 12px;
+}
+
+.battle__item {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}

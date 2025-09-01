@@ -4,3 +4,39 @@
     height: 100vh;
     background: url("/images/bg/bg.jpg") 0 0/cover no-repeat;
 }
+
+.start__container {
+    width: 800px;
+    height: 600px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+}
+
+.start__wrap {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    padding: 12px;
+    align-items: center;
+}
+
+.start__magic {
+    height: 50px;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.start__stats {
+    grid-column: 2;
+    grid-row: 2;
+    height: 200px;
+}
+
+.start__down {
+    margin-top: auto;
+}
+
+.start__build {
+    grid-row: 1/3;
+}
