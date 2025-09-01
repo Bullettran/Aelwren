@@ -1,0 +1,17 @@
+.build {
+    background-color: #fff;
+    padding: 32px;
+}
+
+.build__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 128px);
+    grid-gap: 8px;
+}
+
+.build__item {
+    width: 128px;
+    height: 128px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}

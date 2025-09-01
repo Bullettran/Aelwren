@@ -9,7 +9,7 @@ export default defineComponent({
 <template>
     <div class="start">
         <div class="start__container container">
-            <BattleGrid/>
+            <GameBuild/>
         </div>
     </div>
 </template>
