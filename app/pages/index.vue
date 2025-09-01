@@ -10,6 +10,9 @@ export default defineComponent({
     <div class="start">
         <div class="start__container container">
             <GameBuild/>
+            <client-only>
+                <div class="game-container"></div>
+            </client-only>
         </div>
     </div>
 </template>
