@@ -33,7 +33,7 @@ export default defineComponent({
         return {
             allies: [
                 {
-                    id: 1, type: "war", name: "Воин", hp: 5, maxHp: 5, dmg: 1, position: -1,
+                    id: 1, type: "war", name: "Воин", hp: 5, maxHp: 5, dmg: 4, position: -1,
                 },
                 {
                     id: 2, type: "archer", name: "Лучник", hp: 2, maxHp: 2, dmg: 2, position: -1,
@@ -115,6 +115,7 @@ export default defineComponent({
             this.isBattleActive = true;
             this.battleTurn = 1;
             this.battleLogs = [];
+            this.battlePhase = "player";
             this.addBattleLog(0, "Битва начинается!", "info");
         },
 
